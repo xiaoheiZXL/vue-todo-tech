@@ -5,6 +5,7 @@
 </template>
 
 <style lang="stylus" scoped>
+
 .main-header{
   text-align center
   h1{

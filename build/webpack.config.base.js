@@ -11,18 +11,24 @@ const config = {
   module: {
     rules: [
       {
+        test: /\.(vue|js|jsx)$/,
+        loader: 'eslint-loader',
+        exclude: '/node_modules/',
+        enforce: 'pre' // 预处理
+      },
+      {
         test: /\.vue$/,
         loader: 'vue-loader',
-        options:createVueLoaderOptions(isDev)
+        options: createVueLoaderOptions(isDev)
       },
       {
         test: /\.jsx$/,
         loader: 'babel-loader'
       },
       {
-        test:/\.js$/,
-        loader:'babel-loader',
-        exclude:'/node_modules/'
+        test: /\.js$/,
+        loader: 'babel-loader',
+        exclude: '/node_modules/'
       },
       {
         test: /\.(gif|jpg|jpeg|png|svg)$/,

@@ -1,5 +1,8 @@
 <template>
-  <div :class="['views-item', todo.completed ? 'completed' : '']">
+  <div
+    :class= "{completed:todo.completed}"
+    class="views-item"
+  >
     <input 
       type="checkbox"
       class="toggle"
@@ -15,11 +18,11 @@ export default {
   props: {
     todo: {
       type: Object,
-      required: true,
+      required: true
     }
   },
   methods: {
-    deleteTodo() {
+    deleteTodo () {
       this.$emit('del', this.todo.id)
     }
   }
