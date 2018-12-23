@@ -1,27 +1,27 @@
 const path = require('path')
 const webpack = require('webpack')
-const merge = require('webpack-merge')
-const baseConfig = require('./webpack.config.base')
 const ExtractPlugin = require('extract-text-webpack-plugin')
+const baseConfig = require('./webpack.config.base')
 const VueServerPlugin = require('vue-server-renderer/server-plugin')
-let config
+const merge = require('webpack-merge')
 
+let config
 config = merge(baseConfig, {
   target: 'node',
-  entry: path.join(__dirname, '../client-demo/server-entry.js'),
-  devtool: '#source-map',
+  entry: path.join(__dirname, '../client/server-entry.js'),
+  devtool: 'source-map',
   output: {
     libraryTarget: 'commonjs2',
     filename: 'server-entry.js',
-    path: path.join(__dirname, '../server-build')
+    path: path.join(__dirname, '../server-build.js')
   },
-  externals: Object.keys(require('../package.json').dependencies),
+  externals: Object.keys(require('../package').dependencies),
   module: {
     rules: [
       {
         test: /\.styl/,
         use: ExtractPlugin.extract({
-          fallback: 'style-loader',
+          fallback: 'vue-style-loader',
           use: [
             'css-loader',
             {
@@ -36,14 +36,8 @@ config = merge(baseConfig, {
       }
     ]
   },
-  // import Vue from 'vue'
-  resolve: {
-    alias: {
-      'vue': path.join(__dirname, '../node_modules/vue/dist/vue.esm.js')
-    }
-  },
   plugins: [
-    new ExtractPlugin('styles.[contentHash:8].css'),
+    new ExtractPlugin('style-[contentHash:8].css'),
     new webpack.DefinePlugin({
       'process.env.NODE_ENV': JSON.stringify(process.env.NODE_ENV || 'development'),
       'process.env.VUE_ENV': '"server"'
@@ -51,5 +45,4 @@ config = merge(baseConfig, {
     new VueServerPlugin()
   ]
 })
-
 module.exports = config
