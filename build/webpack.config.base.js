@@ -1,10 +1,6 @@
 const path = require('path')
-const HTMLPlugin = require('html-webpack-plugin')
-const webpack = require('webpack')
-const ExtractPlugin = require('extract-text-webpack-plugin')
-
+const createVueLoaderOptions = require('./vue-loader.config')
 const isDev = process.env.NODE_ENV === 'development'
-
 const config = {
   target: 'web',
   entry: path.join(__dirname, '../client/index.js'),
@@ -16,7 +12,8 @@ const config = {
     rules: [
       {
         test: /\.vue$/,
-        loader: 'vue-loader'
+        loader: 'vue-loader',
+        options:createVueLoaderOptions(isDev)
       },
       {
         test: /\.jsx$/,
