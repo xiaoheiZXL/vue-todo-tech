@@ -13,7 +13,7 @@ const devServer = {
   port: 8000,
   host: '0.0.0.0',
   overlay: {
-    errors: true,
+    errors: true
   },
   hot: true
 }
@@ -27,11 +27,11 @@ const defaultPlugins = [
 ]
 let config
 if (isDev) {
-  config = merge(baseConfig,{
+  config = merge(baseConfig, {
     devtool: '#cheap-module-eval-source-map',
     devServer,
-    module:{
-      rules:[
+    module: {
+      rules: [
         {
           test: /\.styl/,
           use: [
@@ -48,22 +48,22 @@ if (isDev) {
         }
       ]
     },
-    plugins:defaultPlugins.concat([
+    plugins: defaultPlugins.concat([
       new webpack.HotModuleReplacementPlugin(),
       new webpack.NoEmitOnErrorsPlugin()
     ])
   })
 } else {
   config = merge(baseConfig, {
-    entry:{
+    entry: {
       app: path.join(__dirname, '../client/index.js'),
-      vendor:['vue']
+      vendor: ['vue']
     },
-    output:{
-      filename:'[name].[chunkhash:8].js'
+    output: {
+      filename: '[name].[chunkhash:8].js'
     },
-    module:{
-      rules:[
+    module: {
+      rules: [
         {
           test: /\.styl/,
           use: ExtractPlugin.extract({
@@ -73,16 +73,16 @@ if (isDev) {
               {
                 loader: 'postcss-loader',
                 options: {
-                  sourceMap: true,
+                  sourceMap: true
                 }
               },
               'stylus-loader'
             ]
           })
-        },
+        }
       ]
     },
-    plugins:defaultPlugins.concat([
+    plugins: defaultPlugins.concat([
       new ExtractPlugin('styles.[contentHash:8].css'),
       new webpack.optimize.CommonsChunkPlugin({
         name: 'vendor'
