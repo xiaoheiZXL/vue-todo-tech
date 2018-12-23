@@ -24,7 +24,7 @@
       :todos="todos"
       @clearAllCompleted="clearAllCompleted"
     />
-    <!-- <router-view /> -->
+     <router-view />
   </section>
 </template>
 

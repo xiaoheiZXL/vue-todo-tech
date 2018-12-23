@@ -15,7 +15,11 @@ const devServer = {
   overlay: {
     errors: true
   },
-  hot: true
+  hot: true,
+  historyApiFallback: {
+    index: '/public/index.html'
+  }
+  // open: true
 }
 const defaultPlugins = [
   new webpack.DefinePlugin({
@@ -23,7 +27,9 @@ const defaultPlugins = [
       NODE_ENV: isDev ? '"development"' : '"production"'
     }
   }),
-  new HTMLPlugin()
+  new HTMLPlugin({
+    template: path.join(__dirname, './template.html')
+  })
 ]
 let config
 if (isDev) {
@@ -40,7 +46,7 @@ if (isDev) {
             {
               loader: 'postcss-loader',
               options: {
-                sourceMap: true,
+                sourceMap: true
               }
             },
             'stylus-loader'

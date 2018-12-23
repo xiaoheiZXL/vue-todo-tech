@@ -10,14 +10,15 @@
     "lint-fix": "eslint --fix --ext .js --ext .jsx --ext .vue client/",
     "build:client": "cross-env NODE_ENV=production webpack --config build/webpack.config.client.js",
     "build": "npm run rimraf && npm run build:client",
-    "precommit":"npm run lint-fix",
+    "precommit": "npm run lint-fix",
     "dev": "cross-env NODE_ENV=development webpack-dev-server --config build/webpack.config.client.js",
-    "practice":"cross-env NODE_ENV=developmen webpack-dev-server --config build/webpack.config.practice.js"
+    "practice": "cross-env NODE_ENV=developmen webpack-dev-server --config build/webpack.config.practice.js"
   },
   "author": "",
   "license": "ISC",
   "dependencies": {
     "vue": "2.5.13",
+    "vue-router": "^3.0.2",
     "vue-server-renderer": "^2.5.21"
   },
   "devDependencies": {
@@ -26,6 +27,7 @@
     "babel-eslint": "^8.2.1",
     "babel-helper-vue-jsx-merge-props": "2.0.3",
     "babel-loader": "7.1.2",
+    "babel-plugin-syntax-dynamic-import": "^6.18.0",
     "babel-plugin-syntax-jsx": "6.18.0",
     "babel-plugin-transform-vue-jsx": "3.5.0",
     "babel-preset-env": "1.6.1",
