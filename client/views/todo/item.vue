@@ -1,5 +1,5 @@
 <template>
-  <div :class="['todo-item', todo.completed ? 'completed' : '']">
+  <div :class="['views-item', todo.completed ? 'completed' : '']">
     <input 
       type="checkbox"
       class="toggle"
@@ -65,10 +65,10 @@ export default {
   appearance: none;
   outline none
   &:after{
-    content url('../assets/images/round.svg')
+    content url('../../assets/images/round.svg')
   }
   &:checked:after{
-    content url('../assets/images/done.svg')
+    content url('../../assets/images/done.svg')
   }
 }
 .destory{
