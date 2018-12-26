@@ -17,6 +17,9 @@
   "author": "",
   "license": "ISC",
   "dependencies": {
+    "axios": "^0.18.0",
+    "ejs": "^2.6.1",
+    "memory-fs": "^0.4.1",
     "vue": "2.5.13",
     "vue-router": "^3.0.2",
     "vue-server-renderer": "^2.5.21",
