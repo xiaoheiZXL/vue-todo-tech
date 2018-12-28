@@ -11,21 +11,24 @@
     "build:client": "cross-env NODE_ENV=production webpack --config build/webpack.config.client.js",
     "build": "npm run rimraf && npm run build:client",
     "precommit": "npm run lint-fix",
-    "dev": "cross-env NODE_ENV=development webpack-dev-server --config build/webpack.config.client.js",
-    "practice": "cross-env NODE_ENV=developmen webpack-dev-server --config build/webpack.config.practice.js"
+    "practice": "cross-env NODE_ENV=developmen webpack-dev-server --config build/webpack.config.practice.js",
+    "dev:client": "cross-env NODE_ENV=development webpack-dev-server --config build/webpack.config.client.js",
+    "dev:server": "cross-env NODE_ENV=development nodemon server/server.js"
   },
   "author": "",
   "license": "ISC",
   "dependencies": {
     "axios": "^0.18.0",
     "ejs": "^2.6.1",
-    "memory-fs": "^0.4.1",
+    "koa": "2.4.1",
+    "koa-router": "^7.4.0",
     "vue": "2.5.13",
-    "vue-router": "^3.0.2",
-    "vue-server-renderer": "^2.5.21",
+    "vue-router": "3.0.1",
+    "vue-server-renderer": "2.5.13",
     "vuex": "^3.0.1"
   },
   "devDependencies": {
+    "memory-fs": "^0.4.1",
     "autoprefixer": "7.2.3",
     "babel-core": "6.26.0",
     "babel-eslint": "^8.2.1",

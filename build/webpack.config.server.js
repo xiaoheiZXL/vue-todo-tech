@@ -13,9 +13,14 @@ config = merge(baseConfig, {
   output: {
     libraryTarget: 'commonjs2',
     filename: 'server-entry.js',
-    path: path.join(__dirname, '../server-build.js')
+    path: path.join(__dirname, '../server-build')
   },
-  externals: Object.keys(require('../package').dependencies),
+  // resolve:{
+  //   alias:{
+  //     'vue':path.join(__dirname, '../node_modules/vue/dist/vue.esm.js')
+  //   }
+  // },
+  externals: Object.keys(require('../package.json').dependencies),
   module: {
     rules: [
       {

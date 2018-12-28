@@ -18,7 +18,7 @@ serverCompiler.watch({}, (err, stats) => {
   if (err) throw err
   stats = stats.toJson()
   stats.errors.forEach(err => console.log(err))
-  stats.warnings.forEach(warn => console.log(warn))
+  stats.warnings.forEach(warn => console.warn(err))
 
   const bundlePath = path.join(
     serverConfig.output.path,
@@ -45,21 +45,6 @@ const handleSSR = async (ctx) => {
   }
 
 }
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
 
 // const Router = require('koa-router')

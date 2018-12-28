@@ -1,16 +1,17 @@
 const ejs = require('ejs')
 
-module.exports = async (ctx,renderer,template)=>{
+module.exports = async (ctx, renderer, template) => {
   ctx.headers['Content-Type'] = 'text/html'
-  try{
-    const appString = await renderer.bundleRenderer.renderToString(context)
-    const html = ejs.render(template,{
+  const context = {url:ctx.path}
+  try {
+    const appString = await renderer.renderToString(context)
+    const html = ejs.render(template, {
       appString,
       style: context.renderStyles(),
       scripts: context.renderScripts()
     })
     ctx.body = html
-  }catch(err){
+  } catch (err) {
     console.log(err)
     throw err
   }

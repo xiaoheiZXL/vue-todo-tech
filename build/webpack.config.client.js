@@ -15,7 +15,7 @@ const devServer = {
   },
   hot: true,
   historyApiFallback: {
-    index: '/public/index.html'
+    index: '/index.html'
   }
   // open: true
 }
