@@ -4,7 +4,11 @@
     </div>
 </template>
 <script>
-  export default {}
+  export default {
+    metaInfo: {
+      title: 'LoginPage'
+    }
+  }
 </script>
 <style>
 

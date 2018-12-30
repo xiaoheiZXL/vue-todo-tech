@@ -20,6 +20,9 @@
   } from 'vuex'
 
   export default {
+    metaInfo: {
+      title: 'AppPage'
+    },
     components: {
       Header,
       Footer

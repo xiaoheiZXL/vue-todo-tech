@@ -9,7 +9,6 @@ const Router = require('koa-router')
 const serverRender = require('./server-render')
 const VueServerRenderer = require('vue-server-renderer')
 
-
 const serverCompiler = webpack(serverConfig)
 
 serverCompiler.outputFileSystem = mfs
@@ -18,7 +17,6 @@ let bundle
 serverCompiler.watch({}, async (err, stats) => {
   if (err) {
     throw err
-    return
   }
 
   stats = stats.toJson()
@@ -28,9 +26,7 @@ serverCompiler.watch({}, async (err, stats) => {
   let bundlePath = path.join(serverConfig.output.path, 'vue-ssr-server-bundle.json')
 
   bundle = JSON.parse(mfs.readFileSync(bundlePath, 'utf-8'))
-
 })
-
 
 let handleSSR = async ctx => {
   if (!bundle) {

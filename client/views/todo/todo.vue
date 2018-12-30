@@ -27,6 +27,9 @@ import Item from './item.vue'
 import Tabs from './tabs.vue'
 let id = 0
 export default {
+  metaInfo: {
+    title: 'TodoPage'
+  },
   beforeRouteUpdate (to, from, next) {
     console.log('before-route-update')
     next(em => {
