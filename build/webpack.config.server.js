@@ -15,9 +15,9 @@ config = merge(baseConfig, {
     filename: 'server-entry.js',
     path: path.join(__dirname, '../server-build')
   },
-  resolve:{
-    alias:{
-      'vue':path.join(__dirname, '../node_modules/vue/dist/vue.esm.js')
+  resolve: {
+    alias: {
+      'vue': path.join(__dirname, '../node_modules/vue/dist/vue.esm.js')
     }
   },
   externals: Object.keys(require('../package.json').dependencies),

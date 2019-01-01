@@ -65,7 +65,8 @@ if (isDev) {
       vendor: ['vue']
     },
     output: {
-      filename: '[name].[chunkhash:8].js'
+      filename: '[name].[chunkhash:8].js',
+      publicPath: '/public/'
     },
     module: {
       rules: [
@@ -94,6 +95,14 @@ if (isDev) {
       }),
       new webpack.optimize.CommonsChunkPlugin({
         name: 'runtime'
+      }),
+      new webpack.optimize.UglifyJsPlugin({
+        compress: {
+          warnings: false,
+          drop_debugger: true,
+          drop_console: true
+        },
+        sourceMap: true
       })
     ])
   })
