@@ -5,6 +5,7 @@
         <router-link to="/todo"> todo</router-link>
         <router-link to="/login"> login</router-link>
         <router-view></router-view>
+        <!--<notification content="test"/>-->
         <Footer></Footer>
     </div>
 </template>
@@ -38,6 +39,12 @@
       // }, 1000)
       // 模块化调用
       // this['a/updateCount1'](11)
+    },
+    mounted () {
+      this.$notify({
+        content: 'test $notify',
+        btnText: 'close'
+      })
     },
     methods: {
       ...mapActions(['updateCountAsync']),

@@ -7,10 +7,12 @@ import App from './app.vue'
 import './assets/styles/global.styl'
 import createStore from './store'
 import createRouter from './config/router'
+import Notification from './components/notification'
 
 Vue.use(Vuex)
 Vue.use(VueRouter)
 Vue.use(Meta)
+Vue.use(Notification)
 
 export default () => {
   const store = createStore()
