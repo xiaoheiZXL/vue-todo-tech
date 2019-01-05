@@ -1,6 +1,12 @@
 <template>
-  <transition name="fade">
+  <transition
+    name="fade"
+    @after-leave="afterLeave"
+  >
     <div
+      @mouseenter="clearTimer"
+      @mouseleave="createTimer"
+      v-show="visible"
       class="notification"
       :style="style"
     >
@@ -26,10 +32,20 @@
         default: '关闭'
       }
     },
+    data () {
+      return {
+        visible: true
+      }
+    },
     methods: {
       handleClose () {
         this.$emit('close')
-      }
+      },
+      afterLeave () {
+        this.$emit('closed')
+      },
+      createTimer () {},
+      clearTimer () {}
     },
     computed: {
       style () {

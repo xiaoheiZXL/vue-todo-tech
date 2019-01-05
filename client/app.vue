@@ -2,10 +2,10 @@
     <div id="app">
         <div id="cover"></div>
         <Header></Header>
-        <router-link to="/todo"> todo</router-link>
-        <router-link to="/login"> login</router-link>
+        <!--<router-link to="/login"> login</router-link>-->
         <router-view></router-view>
         <!--<notification content="test"/>-->
+        <button @click="showMsg">showMessage</button>
         <Footer></Footer>
     </div>
 </template>
@@ -41,14 +41,20 @@
       // this['a/updateCount1'](11)
     },
     mounted () {
-      this.$notify({
-        content: 'test $notify',
-        btnText: 'close'
-      })
+      // this.$notify({
+      //   content: 'test $notify',
+      //   btnText: 'close'
+      // })
     },
     methods: {
       ...mapActions(['updateCountAsync']),
-      ...mapMutations(['updateCount', 'a/updateCount1'])
+      ...mapMutations(['updateCount', 'a/updateCount1']),
+      showMsg () {
+        this.$notify({
+          content: 'test $notify',
+          btnText: 'close'
+        })
+      }
     },
     computed: {
       ...mapState({}),
