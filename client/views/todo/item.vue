@@ -1,9 +1,9 @@
 <template>
   <div
     :class= "{completed:todo.completed}"
-    class="views-item"
+    class="todo-item"
   >
-    <input 
+    <input
       type="checkbox"
       class="toggle"
       v-model="todo.completed"

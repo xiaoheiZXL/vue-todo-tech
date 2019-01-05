@@ -1,16 +1,7 @@
 <template>
   <div class="helper">
     <span class="left">{{unFinishedTodoLength}} items left</span>
-    <span class="tabs">
-      <span
-        v-for="(state,index) in states"
-        :key="index"
-        :class="[state, filter === state ? 'actived' : '']"
-        @click="toggleFilter(state)"
-      >
-        {{state}}
-      </span>
-    </span>
+    <button class="show-msg-btn" @click="showMsg">showMessage</button>
     <span class="clear" @click="clearAllCompleted">Clear Completed</span>
   </div>
 </template>
@@ -28,9 +19,7 @@ export default {
     }
   },
   data () {
-    return {
-      states: ['all', 'active', 'completed']
-    }
+    return {}
   },
   computed: {
     unFinishedTodoLength () {
@@ -38,11 +27,14 @@ export default {
     }
   },
   methods: {
+    showMsg () {
+      this.$notify({
+        content: '$notify msg',
+        btnText: 'close'
+      })
+    },
     clearAllCompleted () {
       this.$emit('clearAllCompleted')
-    },
-    toggleFilter (state) {
-      this.$emit('toggle', state)
     }
   }
 }
@@ -68,6 +60,11 @@ export default {
 }
 .left{
   text-align left
+}
+.show-msg-btn{
+  outline: none
+  border: none
+  cursor: pointer
 }
 .clear{
   text-align right
