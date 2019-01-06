@@ -41,24 +41,6 @@
     metaInfo: {
       title: 'TodoPage'
     },
-    beforeRouteUpdate (to, from, next) {
-      console.log('before-route-update')
-      next(em => {
-        console.log(em)
-      })
-    },
-    beforeRouteEnter (to, from, next) {
-      console.log('before-route-enter')
-      next(em => {
-        console.log(em)
-      })
-    },
-    beforeRouteLeave (to, from, next) {
-      console.log('before-route-leave')
-      next(em => {
-        console.log(em)
-      })
-    },
     data () {
       return {
         todos: [],

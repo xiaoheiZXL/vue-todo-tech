@@ -4,6 +4,17 @@ const path = require('path')
 const app = new Koa()
 const isDev = process.env.NODE_ENV === 'development'
 const staticRouter = require('./routers/static')
+const apiRouter = require('./routers/api')
+const createDb = require('./db/db')
+const appConfig = require('../app.config')
+
+const db = createDb(appConfig.db.appId, appConfig.db.appKey)
+
+app.use(async (ctx, next) => {
+  ctx.db = db
+  console.log(ctx.request)
+  await next()
+})
 
 app.use(async (ctx, next) => {
   if (ctx.path === '/favicon.ico') {
@@ -28,6 +39,7 @@ app.use(async (ctx, next) => {
 })
 
 app.use(staticRouter.routes()).use(staticRouter.allowedMethods())
+app.use(apiRouter.routes()).use(apiRouter.allowedMethods())
 
 let pageRouter
 if (isDev) {

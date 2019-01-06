@@ -2,7 +2,7 @@ const path = require('path')
 const fs = require('fs')
 const Router = require('koa-router')
 const VueServerRenderer = require('vue-server-renderer')
-const clientManifest = require('../../public/vue-ssr-client-manifest')
+const clientManifest = require('../../public/vue-ssr-client-manifest.json')
 const serverRender = require('./server-render')
 const template = fs.readFileSync(
   path.join(__dirname, '../server.template.ejs'),
