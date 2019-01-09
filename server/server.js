@@ -1,20 +1,35 @@
-const Koa = require('koa')
-const send = require('koa-send')
 const path = require('path')
+const Koa = require('koa')
+const koaBody = require('koa-body')
+const koaSession = require('koa-session')
+const send = require('koa-send')
 const app = new Koa()
+
 const isDev = process.env.NODE_ENV === 'development'
+
 const staticRouter = require('./routers/static')
 const apiRouter = require('./routers/api')
+const userRouter = require('./routers/user')
+
 const createDb = require('./db/db')
 const appConfig = require('../app.config')
 
 const db = createDb(appConfig.db.appId, appConfig.db.appKey)
+
+app.use(koaBody())
 
 app.use(async (ctx, next) => {
   ctx.db = db
   console.log(ctx.request)
   await next()
 })
+
+app.keys = ['vue-ssr-todo']
+
+app.use(koaSession({
+  key: 'v-ssr-id',
+  maxAge: 2 * 60 * 60 * 1000
+}, app))
 
 app.use(async (ctx, next) => {
   if (ctx.path === '/favicon.ico') {
@@ -38,6 +53,7 @@ app.use(async (ctx, next) => {
   }
 })
 
+app.use(userRouter.routes()).use(userRouter.allowedMethods())
 app.use(staticRouter.routes()).use(staticRouter.allowedMethods())
 app.use(apiRouter.routes()).use(apiRouter.allowedMethods())
 
